@@ -1,7 +1,8 @@
-import React, { Component } from 'react'
+import React, { useState } from 'react'
 import './App.css'
 import 'bootstrap/dist/css/bootstrap-grid.min.css'
 import Card from './components/Card'
+import AddCardModal from './components/AddCardModal'
 
 const COLORS = {
   Psychic: "#f8a5c2",
@@ -54,7 +55,8 @@ function MyCardList() {
   )
 }
 
-function Footer() {
+function Footer(props) {
+  const { onClick = () => {} } = props
   return (
     <div
       className="bottom-fotter d-flex align-items-center justify-content-center"
@@ -77,23 +79,27 @@ function Footer() {
           marginBottom: 35,
           cursor: 'pointer',
         }}
+        onClick={onClick}
       >+</div>
     </div>
   )
 }
 
-class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <div className="container-fluid d-flex flex-column p-0">
-          <Header/>
-          <MyCardList/>
-          <Footer/>
-        </div>
+function App() {
+  const [addCardModal, setAddCardModal] = useState({ isOpen: false })
+  return (
+    <div className="App">
+      <div className="container-fluid d-flex flex-column p-0">
+        <Header/>
+        <MyCardList/>
+        <Footer onClick={() => { setAddCardModal({ isOpen: true }) }}/>
       </div>
-    )
-  }
+      <AddCardModal
+        {...addCardModal}
+        onRequestClose={() => { setAddCardModal({ isOpen: false }) }}
+      />
+    </div>
+  )
 }
 
 export default App
