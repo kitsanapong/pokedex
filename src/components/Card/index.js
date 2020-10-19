@@ -5,25 +5,29 @@ import CuteImage from '../../cute.png'
 import './Card.css'
 
 function PowerBar(props) {
-  const { name = 'HP' } = props
+  const { name = 'HP', barPercentage = 0 } = props
   return (
-    <div className="d-flex flex-row">
+    <div
+      className="d-flex flex-row"
+      style={{ width: '100%' }}
+    >
       <div
         style={{
-          width: 50
+          width: '20%'
         }}
       >{name}</div>
       <div style={{
         backgroundColor: '#e3e3e3',
         borderRadius: 20,
-        width: 150,
+        width: '75%',
         boxShadow: '0px 1px 1px #d4d4d4',
+        height: 20,
       }}>
         <div style={{
           backgroundColor: '#f3701a',
           borderRadius: 20,
-          width: 100,
-          height: 26,
+          width: `${barPercentage}%`,
+          height: 20,
         }}/>
       </div>
     </div>
@@ -41,7 +45,8 @@ function Cost() {
   )
 }
 
-function Name() {
+function Name(props) {
+  const { data = {} } = props
   return (
     <div
       className="card-name"
@@ -50,15 +55,25 @@ function Name() {
         fontFamily: 'Gaegu',
         textTransform: 'uppercase',
       }}
-    >Deoxys ex</div>
+    >{data.name}</div>
   )
 }
 
 function Card(props) {
   const {
+    data = {},
     style = {},
     buttonText = 'X',
   } = props
+  const HP = parseFloat(data.hp) > 100? 100 : parseFloat(data.hp)
+  const SRT = data.attacks? data.attacks.length*50 : 0
+  const WEEK = data.weaknesses? data.weaknesses.length*100 : 0
+  console.log(data)
+  const DMGValue = data.attacks? data.attacks.reduce((acc, move) => {
+    if (move.damage !== '') return acc + parseInt(move.damage.replace(/\D/g, ""))
+    else return acc
+  }, 0) : 0
+  const DMG = DMGValue > 100? 100 : DMGValue
   return (
     <div
       className="card d-flex flex-row"
@@ -74,15 +89,17 @@ function Card(props) {
     >
       <div className="d-flex align-items-center">
         <img
-          src="https://images.pokemontcg.io/ex8/98_hires.png"
+          src={data.imageUrl}
           height="180px"
+          width="129px"
         />
       </div>
-      <div className="d-flex flex-column justify-content-between p-3">
-        <Name/>
-        <PowerBar/>
-        <PowerBar/>
-        <PowerBar/>
+      <div className="d-flex flex-column justify-content-between p-3" style={{ width: '100%' }}>
+        <Name data={data}/>
+        <PowerBar name="HP" barPercentage={HP} />
+        <PowerBar name="STR" barPercentage={SRT} />
+        <PowerBar name="WEEK" barPercentage={WEEK} />
+        <PowerBar name="DMG" barPercentage={DMG} />
         <Cost/>
       </div>
       <div
