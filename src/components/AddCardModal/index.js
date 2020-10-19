@@ -34,6 +34,36 @@ function Search() {
   )
 }
 
+function ResultList() {
+  return (
+    <div
+      className="d-flex flex-column p-3"
+      style={{
+        height: 'calc(100% - 70px)',
+        overflow: 'scroll',
+      }}
+    >
+      <Card
+        style={{ width: '100%' }}
+        buttonText="Add"
+      />
+      <Card
+        style={{ width: '100%' }}
+        buttonText="Add"
+      />
+      <Card
+        style={{ width: '100%' }}
+        buttonText="Add"
+      />
+      <Card
+        style={{ width: '100%' }}
+        buttonText="Add"
+      />
+
+    </div>
+  )
+}
+
 function AddCardModal(props) {
   const {
     isOpen = false,
@@ -65,31 +95,7 @@ function AddCardModal(props) {
         onClick={(e) => { e.stopPropagation() }}
       >
         <Search/>
-        <div
-          className="d-flex flex-column p-3"
-          style={{
-            height: 'calc(100% - 70px)',
-            overflow: 'scroll',
-          }}
-        >
-          <Card
-            style={{ width: '100%' }}
-            buttonText="Add"
-          />
-          <Card
-            style={{ width: '100%' }}
-            buttonText="Add"
-          />
-          <Card
-            style={{ width: '100%' }}
-            buttonText="Add"
-          />
-          <Card
-            style={{ width: '100%' }}
-            buttonText="Add"
-          />
-          
-        </div>
+        <ResultList/>
       </div>
     </div>
   )
