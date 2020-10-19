@@ -68,6 +68,7 @@ function AddCardModal(props) {
     isOpen = false,
     onRequestClose = () => {},
     addCard = () => {},
+    existingCards = [],
   } = props
   const [results, setResults] = useState([])
   const [nameSearch, setNameSearch] = useState('')
@@ -83,6 +84,9 @@ function AddCardModal(props) {
       else setResults([])
     })
   }, [nameSearch])
+
+  const existingCardID = existingCards.map(card => card.id)
+  const aviableResults = results.filter(card => existingCardID.indexOf(card.id) === -1)
   return (
     <div
       className="add-card-modal align-items-center justify-content-center"
@@ -109,7 +113,7 @@ function AddCardModal(props) {
         onClick={(e) => { e.stopPropagation() }}
       >
         <Search value={nameSearch} setValue={setNameSearch} />
-        <ResultList results={results} addCard={addCard}/>
+        <ResultList results={aviableResults} addCard={addCard}/>
       </div>
     </div>
   )

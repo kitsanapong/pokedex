@@ -102,6 +102,7 @@ function App() {
       </div>
       <AddCardModal
         {...addCardModal}
+        existingCards={pokedex}
         onRequestClose={() => { setAddCardModal({ isOpen: false }) }}
         addCard={(card) => { setPokedex([...pokedex, card]) }}
       />
