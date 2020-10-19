@@ -16,13 +16,25 @@ const COLORS = {
   Fire: "#eb4d4b"
 }
 
+function Header() {
+  return (
+    <div
+      className="d-flex justify-content-center align-items-center"
+      style={{
+        fontSize: 36,
+      }}
+    >
+      My Pokedex
+    </div>
+  )
+}
+
 class App extends Component {
   render() {
     return (
       <div className="App">
-        <div className="d-flex flex-row">
-          <div>hello</div>
-          <div>hello</div>
+        <div className="container-fluid d-flex flex-column">
+          <Header/>
         </div>
       </div>
     )
