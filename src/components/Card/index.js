@@ -55,7 +55,10 @@ function Name() {
 }
 
 function Card(props) {
-  const { style = {} } = props
+  const {
+    style = {},
+    buttonText = 'X',
+  } = props
   return (
     <div
       className="card d-flex flex-row"
@@ -92,7 +95,7 @@ function Card(props) {
           color: '#dc7777',
           cursor: 'pointer',
         }}
-      >X</div>
+      >{buttonText}</div>
     </div>
   )
 }

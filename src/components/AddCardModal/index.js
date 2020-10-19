@@ -72,13 +72,23 @@ function AddCardModal(props) {
             overflow: 'scroll',
           }}
         >
-          <Card style={{ width: '100%' }}/>
-          <Card style={{ width: '100%' }}/>
-          <Card style={{ width: '100%' }}/>
-          <Card style={{ width: '100%' }}/>
-          <Card style={{ width: '100%' }}/>
-          <Card style={{ width: '100%' }}/>
-          <Card style={{ width: '100%' }}/>
+          <Card
+            style={{ width: '100%' }}
+            buttonText="Add"
+          />
+          <Card
+            style={{ width: '100%' }}
+            buttonText="Add"
+          />
+          <Card
+            style={{ width: '100%' }}
+            buttonText="Add"
+          />
+          <Card
+            style={{ width: '100%' }}
+            buttonText="Add"
+          />
+          
         </div>
       </div>
     </div>
