@@ -111,11 +111,12 @@ function AddCardModal(props) {
     })
   }, [])
   useEffect(() => {
-    Axios.get(`http://localhost:3030/api/cards?limit=30&name=${nameSearch}`).then().then((res) => {
+    const trypeQuery = typeSearch === 'All'? '' : typeSearch
+    Axios.get(`http://localhost:3030/api/cards?limit=30&name=${nameSearch}&type=${trypeQuery}`).then().then((res) => {
       if (res && res.data && res.data.cards) setResults(res.data.cards)
       else setResults([])
     })
-  }, [nameSearch])
+  }, [nameSearch, typeSearch])
 
   const existingCardID = existingCards.map(card => card.id)
   const aviableResults = results.filter(card => existingCardID.indexOf(card.id) === -1)
