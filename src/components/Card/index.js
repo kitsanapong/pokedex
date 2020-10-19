@@ -65,6 +65,7 @@ function Card(props) {
     data = {},
     style = {},
     buttonText = 'X',
+    buttonClick = () => {},
   } = props
   const HP = data.hp && data.hp !== 'None'? parseInt(data.hp) > 100? 100 : parseInt(data.hp) : 0
   const SRT = data.attacks? data.attacks.length*50 : 0
@@ -122,6 +123,7 @@ function Card(props) {
           color: '#dc7777',
           cursor: 'pointer',
         }}
+        onClick={buttonClick}
       >{buttonText}</div>
     </div>
   )

@@ -36,7 +36,7 @@ function Search() {
 }
 
 function ResultList(props) {
-  const { results = [] } = props
+  const { results = [], addCard = () => {} } = props
   return (
     <div
       className="d-flex flex-column p-3"
@@ -52,6 +52,7 @@ function ResultList(props) {
             data={card}
             style={{ width: '100%' }}
             buttonText="Add"
+            buttonClick={() => { addCard(card) }}
           />
         )
       })}
@@ -63,6 +64,7 @@ function AddCardModal(props) {
   const {
     isOpen = false,
     onRequestClose = () => {},
+    addCard = () => {},
   } = props
   const [results, setResults] = useState([])
   useEffect(() => {
@@ -97,7 +99,7 @@ function AddCardModal(props) {
         onClick={(e) => { e.stopPropagation() }}
       >
         <Search/>
-        <ResultList results={results}/>
+        <ResultList results={results} addCard={addCard}/>
       </div>
     </div>
   )

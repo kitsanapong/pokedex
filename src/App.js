@@ -75,6 +75,7 @@ function Footer(props) {
 }
 
 function App() {
+  const [pokedex, setPokedex] = useState([])
   const [addCardModal, setAddCardModal] = useState({ isOpen: true })
   return (
     <div className="App">
@@ -86,6 +87,7 @@ function App() {
       <AddCardModal
         {...addCardModal}
         onRequestClose={() => { setAddCardModal({ isOpen: false }) }}
+        addCard={(card) => { setPokedex([...pokedex, card]) }}
       />
     </div>
   )
