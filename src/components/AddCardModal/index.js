@@ -1,7 +1,8 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 
 import SearchIcon from '../../search.png'
 import Card from '../Card'
+import Axios from 'axios'
 
 function Search() {
   return (
@@ -69,6 +70,14 @@ function AddCardModal(props) {
     isOpen = false,
     onRequestClose = () => {},
   } = props
+  const [results, setResults] = useState([])
+  useEffect(() => {
+    Axios.get('http://localhost:3030/api/cards').then().then((res) => {
+      if (res && res.data && res.data.cards) setResults(res.data.cards)
+      else setResults([])
+    })
+  }, [])
+  console.log(results)
   return (
     <div
       className="add-card-modal align-items-center justify-content-center"
