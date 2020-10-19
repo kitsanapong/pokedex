@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import './App.css'
+import 'bootstrap/dist/css/bootstrap-grid.min.css'
 
 const COLORS = {
   Psychic: "#f8a5c2",
@@ -19,6 +20,10 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+        <div className="d-flex flex-row">
+          <div>hello</div>
+          <div>hello</div>
+        </div>
       </div>
     )
   }
