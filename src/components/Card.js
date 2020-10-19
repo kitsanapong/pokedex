@@ -12,10 +12,18 @@ function PowerBar(props) {
         }}
       >{name}</div>
       <div style={{
-        backgroundColor: '#f3701a',
+        backgroundColor: '#e3e3e3',
         borderRadius: 20,
-        width: 100,
-      }}></div>
+        width: 150,
+        boxShadow: '0px 1px 1px #d4d4d4',
+      }}>
+        <div style={{
+          backgroundColor: '#f3701a',
+          borderRadius: 20,
+          width: 100,
+          height: 26,
+        }}/>
+      </div>
     </div>
   )
 }
