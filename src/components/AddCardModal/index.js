@@ -4,7 +4,7 @@ import SearchIcon from '../../search.png'
 import Card from '../Card'
 import Axios from 'axios'
 
-function Search(props) {
+function NameSearch(props) {
   const { value = '', setValue } = props
   return (
     <div
@@ -34,6 +34,37 @@ function Search(props) {
           width: 36
         }}
       />
+    </div>
+  )
+}
+
+function TypeSearch(props) {
+  const { value = '', setValue } = props
+  return (
+    <div className="mt-1 mx-3">
+      <select
+        value={value}
+        onChange={(e) => { setValue(e.target.value) }}
+        style={{
+          width: '100%',
+          height: 36,
+          border: '1px solid #e6e6e6',
+          fontFamily: 'Gaegu',
+          fontSize: 16,
+        }}
+      >
+        <option value="All">ALL</option>
+        <option value="Psychic">Psychic</option>
+        <option value="Fighting">Fighting</option>
+        <option value="Fairy">Fairy</option>
+        <option value="Normal">Normal</option>
+        <option value="Grass">Grass</option>
+        <option value="Metal">Metal</option>
+        <option value="Water">Water</option>
+        <option value="Lightning">Lightning</option>
+        <option value="Darkness">Darkness</option>
+        <option value="Fire">Fire</option>
+      </select>
     </div>
   )
 }
@@ -72,6 +103,7 @@ function AddCardModal(props) {
   } = props
   const [results, setResults] = useState([])
   const [nameSearch, setNameSearch] = useState('')
+  const [typeSearch, setTypeSearch] = useState('All')
   useEffect(() => {
     Axios.get('http://localhost:3030/api/cards').then().then((res) => {
       if (res && res.data && res.data.cards) setResults(res.data.cards)
@@ -112,7 +144,8 @@ function AddCardModal(props) {
         }}
         onClick={(e) => { e.stopPropagation() }}
       >
-        <Search value={nameSearch} setValue={setNameSearch} />
+        <NameSearch value={nameSearch} setValue={setNameSearch} />
+        <TypeSearch value={typeSearch} setValue={setTypeSearch}/>
         <ResultList results={aviableResults} addCard={addCard}/>
       </div>
     </div>
