@@ -54,7 +54,8 @@ function Name() {
   )
 }
 
-function Card() {
+function Card(props) {
+  const { style = {} } = props
   return (
     <div
       className="card d-flex flex-row"
@@ -65,6 +66,7 @@ function Card() {
         marginBottom: 10,
         padding: '0px 10px',
         position: 'relative',
+        ...style,
       }}
     >
       <div className="d-flex align-items-center">

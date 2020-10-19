@@ -1,11 +1,12 @@
 import React from 'react'
 
 import SearchIcon from '../../search.png'
+import Card from '../Card'
 
 function Search() {
   return (
     <div
-      className="d-flex flex-row justify-content-between m-3"
+      className="d-flex flex-row justify-content-between mt-3 mx-3"
       style={{
         border: '1px solid #e6e6e6'
       }}
@@ -64,6 +65,15 @@ function AddCardModal(props) {
         onClick={(e) => { e.stopPropagation() }}
       >
         <Search/>
+        <div className="d-flex flex-column p-3">
+          <Card style={{ width: '100%' }}/>
+          <Card style={{ width: '100%' }}/>
+          <Card style={{ width: '100%' }}/>
+          <Card style={{ width: '100%' }}/>
+          <Card style={{ width: '100%' }}/>
+          <Card style={{ width: '100%' }}/>
+          <Card style={{ width: '100%' }}/>
+        </div>
       </div>
     </div>
   )
