@@ -31,7 +31,8 @@ function Header() {
   )
 }
 
-function MyCardList() {
+function MyCardList(props) {
+  const { pokedex = [], removeCard = () => {} } = props
   return (
     <div
       className="d-flex flex-row flex-wrap justify-content-between"
@@ -40,6 +41,15 @@ function MyCardList() {
         height: 'calc(768px - 56px - 56px - 59px)',
       }}
     >
+      {pokedex.map((card) => {
+        return (
+          <Card
+            key={card.id}
+            data={card}
+            buttonClick={() => { removeCard(card) }}
+          />
+        )
+      })}
     </div>
   )
 }
@@ -81,7 +91,13 @@ function App() {
     <div className="App">
       <div className="container-fluid d-flex flex-column p-0">
         <Header/>
-        <MyCardList/>
+        <MyCardList
+          pokedex={pokedex}
+          removeCard={(card) => {
+            const remainingCard = pokedex.filter((item) => card.id !== item.id)
+            setPokedex(remainingCard)
+          }}
+        />
         <Footer onClick={() => { setAddCardModal({ isOpen: true }) }}/>
       </div>
       <AddCardModal
