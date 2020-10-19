@@ -34,13 +34,14 @@ function PowerBar(props) {
   )
 }
 
-function Cost() {
+function Happiness(props) {
+  const { value = 0 } = props
+  const intValue = Math.ceil(value)
   return (
     <div className="cost-wrapper d-flex flex-row">
-      <img className="cost mr-1" src={CuteImage} width="32px"/>
-      <img className="cost mr-1" src={CuteImage} width="32px"/>
-      <img className="cost mr-1" src={CuteImage} width="32px"/>
-      <img className="cost mr-1" src={CuteImage} width="32px"/>
+      {Array.from(Array(intValue)).map((v, index) => {
+        return <img key={index} className="cost mr-1" src={CuteImage} width="32px"/>
+      })}
     </div>
   )
 }
@@ -65,15 +66,24 @@ function Card(props) {
     style = {},
     buttonText = 'X',
   } = props
-  const HP = parseFloat(data.hp) > 100? 100 : parseFloat(data.hp)
+  const HP = data.hp && data.hp !== 'None'? parseInt(data.hp) > 100? 100 : parseInt(data.hp) : 0
   const SRT = data.attacks? data.attacks.length*50 : 0
   const WEEK = data.weaknesses? data.weaknesses.length*100 : 0
-  console.log(data)
   const DMGValue = data.attacks? data.attacks.reduce((acc, move) => {
     if (move.damage !== '') return acc + parseInt(move.damage.replace(/\D/g, ""))
     else return acc
   }, 0) : 0
   const DMG = DMGValue > 100? 100 : DMGValue
+
+  const WeekToCalHappy = data.weaknesses? data.weaknesses.length : 0
+  const HAPPY = (HP/10 + DMGValue/10 + 10 - WeekToCalHappy)/5
+
+  // console.log(data)
+  // console.log(HP)
+  // console.log(DMGValue)
+  // console.log(WeekToCalHappy)
+  // console.log(HAPPY)
+  // console.log('================')
   return (
     <div
       className="card d-flex flex-row"
@@ -100,7 +110,7 @@ function Card(props) {
         <PowerBar name="STR" barPercentage={SRT} />
         <PowerBar name="WEEK" barPercentage={WEEK} />
         <PowerBar name="DMG" barPercentage={DMG} />
-        <Cost/>
+        <Happiness value={HAPPY} />
       </div>
       <div
         className="close"
