@@ -86,7 +86,7 @@ function Footer(props) {
 }
 
 function App() {
-  const [addCardModal, setAddCardModal] = useState({ isOpen: false })
+  const [addCardModal, setAddCardModal] = useState({ isOpen: true })
   return (
     <div className="App">
       <div className="container-fluid d-flex flex-column p-0">
