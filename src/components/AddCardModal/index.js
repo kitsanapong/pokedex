@@ -35,7 +35,8 @@ function Search() {
   )
 }
 
-function ResultList() {
+function ResultList(props) {
+  const { results = [] } = props
   return (
     <div
       className="d-flex flex-column p-3"
@@ -44,23 +45,16 @@ function ResultList() {
         overflow: 'scroll',
       }}
     >
-      <Card
-        style={{ width: '100%' }}
-        buttonText="Add"
-      />
-      <Card
-        style={{ width: '100%' }}
-        buttonText="Add"
-      />
-      <Card
-        style={{ width: '100%' }}
-        buttonText="Add"
-      />
-      <Card
-        style={{ width: '100%' }}
-        buttonText="Add"
-      />
-
+      {results.map((card) => {
+        return (
+          <Card
+            key={card.id}
+            data={card}
+            style={{ width: '100%' }}
+            buttonText="Add"
+          />
+        )
+      })}
     </div>
   )
 }
@@ -77,7 +71,6 @@ function AddCardModal(props) {
       else setResults([])
     })
   }, [])
-  console.log(results)
   return (
     <div
       className="add-card-modal align-items-center justify-content-center"
@@ -104,7 +97,7 @@ function AddCardModal(props) {
         onClick={(e) => { e.stopPropagation() }}
       >
         <Search/>
-        <ResultList/>
+        <ResultList results={results}/>
       </div>
     </div>
   )
