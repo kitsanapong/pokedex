@@ -40,17 +40,6 @@ function MyCardList() {
         height: 'calc(768px - 56px - 56px - 59px)',
       }}
     >
-      <Card/>
-      <Card/>
-      <Card/>
-      <Card/>
-      <Card/>
-      <Card/>
-      <Card/>
-      <Card/>
-      <Card/>
-      <Card/>
-
     </div>
   )
 }
