@@ -4,7 +4,8 @@ import SearchIcon from '../../search.png'
 import Card from '../Card'
 import Axios from 'axios'
 
-function Search() {
+function Search(props) {
+  const { value = '', setValue } = props
   return (
     <div
       className="d-flex flex-row justify-content-between mt-3 mx-3"
@@ -14,7 +15,9 @@ function Search() {
     >
       <input
         className="px-1"
-        defaultValue="Find pokemon"
+        placeholder="Find pokemon"
+        value={value}
+        onChange={(e) => { setValue(e.target.value) }}
         style={{
           height: 36,
           fontFamily: 'Gaegu',
@@ -67,12 +70,19 @@ function AddCardModal(props) {
     addCard = () => {},
   } = props
   const [results, setResults] = useState([])
+  const [nameSearch, setNameSearch] = useState('')
   useEffect(() => {
     Axios.get('http://localhost:3030/api/cards').then().then((res) => {
       if (res && res.data && res.data.cards) setResults(res.data.cards)
       else setResults([])
     })
   }, [])
+  useEffect(() => {
+    Axios.get(`http://localhost:3030/api/cards?limit=30&name=${nameSearch}`).then().then((res) => {
+      if (res && res.data && res.data.cards) setResults(res.data.cards)
+      else setResults([])
+    })
+  }, [nameSearch])
   return (
     <div
       className="add-card-modal align-items-center justify-content-center"
@@ -98,7 +108,7 @@ function AddCardModal(props) {
         }}
         onClick={(e) => { e.stopPropagation() }}
       >
-        <Search/>
+        <Search value={nameSearch} setValue={setNameSearch} />
         <ResultList results={results} addCard={addCard}/>
       </div>
     </div>
