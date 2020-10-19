@@ -1,0 +1,15 @@
+.card {
+  box-shadow: 0px 1px 2px #d5d6dc; 
+}
+
+.card:hover {
+  box-shadow: 0px 1px 4px #aeaeae;
+}
+
+.card .close{
+  display: none;
+}
+
+.card:hover .close{
+  display: inline;
+}

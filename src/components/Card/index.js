@@ -1,6 +1,8 @@
 import React from 'react'
 
-import CuteImage from '../cute.png'
+import CuteImage from '../../cute.png'
+
+import './Card.css'
 
 function PowerBar(props) {
   const { name = 'HP' } = props
@@ -62,7 +64,7 @@ function Card() {
         backgroundColor: '#f3f4f7',
         marginBottom: 10,
         padding: '0px 10px',
-        boxShadow: '0px 1px 3px #d5d6dc'
+        position: 'relative',
       }}
     >
       <div className="d-flex align-items-center">
@@ -78,6 +80,17 @@ function Card() {
         <PowerBar/>
         <Cost/>
       </div>
+      <div
+        className="close"
+        style={{
+          position: 'absolute',
+          top: 10,
+          right: 10,
+          fontSize: 24,
+          color: '#dc7777',
+          cursor: 'pointer',
+        }}
+      >X</div>
     </div>
   )
 }
