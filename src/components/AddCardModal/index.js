@@ -65,7 +65,13 @@ function AddCardModal(props) {
         onClick={(e) => { e.stopPropagation() }}
       >
         <Search/>
-        <div className="d-flex flex-column p-3">
+        <div
+          className="d-flex flex-column p-3"
+          style={{
+            height: 'calc(100% - 70px)',
+            overflow: 'scroll',
+          }}
+        >
           <Card style={{ width: '100%' }}/>
           <Card style={{ width: '100%' }}/>
           <Card style={{ width: '100%' }}/>
