@@ -79,7 +79,7 @@ function ResultList(props) {
         overflow: 'scroll',
       }}
     >
-      {results.map((card) => {
+      {results.length > 0? results.map((card) => {
         return (
           <Card
             key={card.id}
@@ -89,7 +89,9 @@ function ResultList(props) {
             buttonClick={() => { addCard(card) }}
           />
         )
-      })}
+      }): (
+        <div>No Result</div>
+      )}
     </div>
   )
 }
