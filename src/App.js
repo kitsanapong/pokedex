@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import './App.css'
 import 'bootstrap/dist/css/bootstrap-grid.min.css'
+import Card from './components/Card'
 
 const COLORS = {
   Psychic: "#f8a5c2",
@@ -29,12 +30,37 @@ function Header() {
   )
 }
 
+function MyCardList() {
+  return (
+    <div
+      className="d-flex flex-row flex-wrap justify-content-between"
+      style={{
+        overflow: 'scroll',
+        height: 'calc(768px - 56px - 59px)',
+      }}
+    >
+      <Card/>
+      <Card/>
+      <Card/>
+      <Card/>
+      <Card/>
+      <Card/>
+      <Card/>
+      <Card/>
+      <Card/>
+      <Card/>
+
+    </div>
+  )
+}
+
 class App extends Component {
   render() {
     return (
       <div className="App">
         <div className="container-fluid d-flex flex-column">
           <Header/>
+          <MyCardList/>
         </div>
       </div>
     )
