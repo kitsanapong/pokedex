@@ -36,7 +36,7 @@ function MyCardList() {
       className="d-flex flex-row flex-wrap justify-content-between"
       style={{
         overflow: 'scroll',
-        height: 'calc(768px - 56px - 59px)',
+        height: 'calc(768px - 56px - 56px - 59px)',
       }}
     >
       <Card/>
@@ -54,13 +54,42 @@ function MyCardList() {
   )
 }
 
+function Footer() {
+  return (
+    <div
+      className="bottom-fotter d-flex align-items-center justify-content-center"
+      style={{
+        backgroundColor: '#ec5656',
+        width: '100%',
+        height: 56,
+      }}
+    >
+      <div
+        style={{
+          color: 'white',
+          fontSize: 62,
+          height: 90,
+          width: 90,
+          borderRadius: '50%',
+          textAlign: 'center',
+          backgroundColor: '#ec5656',
+          zIndex: 2,
+          marginBottom: 35,
+          cursor: 'pointer',
+        }}
+      >+</div>
+    </div>
+  )
+}
+
 class App extends Component {
   render() {
     return (
       <div className="App">
-        <div className="container-fluid d-flex flex-column">
+        <div className="container-fluid d-flex flex-column p-0">
           <Header/>
           <MyCardList/>
+          <Footer/>
         </div>
       </div>
     )
