@@ -86,7 +86,7 @@ function Footer(props) {
 
 function App() {
   const [pokedex, setPokedex] = useState([])
-  const [addCardModal, setAddCardModal] = useState({ isOpen: true })
+  const [addCardModal, setAddCardModal] = useState({ isOpen: false })
   return (
     <div className="App">
       <div className="container-fluid d-flex flex-column p-0">
